@@ -1,0 +1,35 @@
+{
+  "id": "http://openinterconnect.org/zwavemapping/schemas/zwave.operation.batterycommandclass.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "Battery Command Class",
+  "definitions": {
+    "zwave.operation.batterycommandclass": {
+      "type": "object",
+      "properties": {
+        "Battery Level": {
+            "type": [
+                "if Battery Level = 255, string",
+                "if Battery Level != 255, integer"
+                ],
+          "description": "percentage indicating the battery level or low battery warning",
+          "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.energy.battery",
+            "x-to-ocf": [
+              "if Battery Level = 255, ocf.r.energy.battery.lowbattery = true; ocf.r.energy.battery.charge = 0.",
+              "if Battery Level != 255, ocf.r.energy.battery.charge = Battery Level."
+            ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "allOf": [
+    {"$ref": "#/definitions/zwave.operation.batterycommandclass"}
+  ],
+  "required": ["Battery Level"]
+}

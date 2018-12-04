@@ -1,0 +1,84 @@
+{
+  "id": "http://openinterconnect.org/zwavemapping/schemas/zwave.operation.multilevelsensorcommandclasscarbonmonoxide.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "Multilevel Sensor Command Class Carbon Monoxide",
+  "definitions": {
+    "zwave.operation.multilevelsensorcommandclasscarbonmonoxide": {
+      "type": "object",
+      "properties": {
+        "Sensor Type": {
+          "type" :  "Integer",
+          "description": " specify the carbon monoxidesensor type of the actual sensor reading ",
+          "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.carbonmonoxide",
+            "x-to-ocf": [
+              "if Sensor Type = Carbon monoxide (CO) level, ocf.rt = oic.r.sensor.carbonmonoxide."
+            ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+          }
+        },
+        "Precision": {
+           "type" :  "Number",
+           "description": " indicate how many decimal places are included the Sensor Value field ",
+           "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.carbonmonoxide",
+             "x-to-ocf": [
+               "ocf.r.sensor.carbonmonoxide.precision = Precision"
+             ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         },
+         "Scale": {
+           "type" :  "Integer",
+           "description": " indicate what scale is used for the actual sensor reading ",
+           "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.carbonmonoxide",
+             "x-to-ocf": [
+               "N/A"
+             ],
+            "x-from-ocf": [
+			    "Scale = ppm (0x01)"
+			]
+           }
+         },
+         "Size": {
+           "type" :  "enum",
+           "description": " indicate the length in bytes of the Sensor Value field ",
+           "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.carbonmonoxide",
+             "x-to-ocf": [
+               "N/A"
+             ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         },
+         "Sensor Value": {
+           "type" :  "array",
+           "description": " specify the value of the actual sensor reading ",
+           "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.carbonmonoxide",
+             "x-to-ocf": [
+               "ocf.r.sensor.carbonmonoxide.value = true",
+               "ocf.r.sensor.carbonmonoxide.measurement = Sensor Value"
+             ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         }
+       }
+    }
+  },
+  "type": "object",
+   "allOf": [
+    {"$ref": "#/definitions/zwave.operation.multilevelsensorcommandclasscarbonmonoxide"}
+  ],
+  "required": ["Sensor Type", "Precision", "Scale", "Size", "Sensor Value"]
+}

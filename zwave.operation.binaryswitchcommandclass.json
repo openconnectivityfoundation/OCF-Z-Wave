@@ -1,0 +1,34 @@
+{
+  "id": "http://openinterconnect.org/zwavemapping/schemas/zwave.operation.binaryswitchcommandclass.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "Binary Switch Command Classs",
+  "definitions": {
+    "zwave.operation.binaryswitchcommandclass": {
+      "type": "object",
+      "properties": {
+        "Value": {
+          "type" :  "boolean",
+          "description": "On/Off state at the receiving node",
+          "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.switch.binary",
+            "x-to-ocf": [
+              "if Value = 255, ocf.r.switch.binary.value = true.",
+              "if Value != 255, ocf.r.switch.binary.value = false."
+            ],
+            "x-from-ocf": [
+              "if ocf.r.switch.binary.value = false, Value = 0",
+              "if ocf.r.switch.binary.value = true, Value = 255"
+
+			]
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+   "allOf": [
+    {"$ref": "#/definitions/zwave.operation.binaryswitchcommandclass"}
+  ],
+  "required": ["Value"]
+}

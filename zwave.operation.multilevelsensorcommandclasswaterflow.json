@@ -1,0 +1,84 @@
+{
+  "id": "http://openinterconnect.org/zwavemapping/schemas/zwave.operation.multilevelsensorcommandclasswaterflow.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "Multilevel Sensor Command Class Water Flow",
+  "definitions": {
+    "zwave.operation.multilevelsensorcommandclasswaterflow": {
+      "type": "object",
+      "properties": {
+        "Sensor Type": {
+          "type" :  "Integer",
+          "description": " specify the water flow sensor type of the actual sensor reading ",
+          "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.water",
+            "x-to-ocf": [
+              "if Sensor Type = Water flow, ocf.rt = oic.r.sensor.water."
+            ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+          }
+        },
+        "Precision": {
+           "type" :  "Number",
+           "description": " indicate how many decimal places are included the Sensor Value field ",
+           "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.water",
+             "x-to-ocf": [
+               "ocf.r.sensor.water.precision = Precision"
+             ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         },
+         "Scale": {
+           "type" :  "Integer",
+           "description": " indicate what scale is used for the actual sensor reading ",
+           "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.water",
+             "x-to-ocf": [
+               "N/A"
+             ],
+            "x-from-ocf": [
+			    "Scale = litre/hr (0x00)"
+			]
+           }
+         },
+         "Size": {
+           "type" :  "enum",
+           "description": " indicate the length in bytes of the Sensor Value field ",
+           "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.water",
+             "x-to-ocf": [
+               "N/A"
+             ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         },
+         "Sensor Value": {
+           "type" :  "array",
+           "description": " specify the value of the actual sensor reading ",
+           "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.sensor.water",
+             "x-to-ocf": [
+               "ocf.r.sensor.water.value = true",
+               "ocf.r.sensor.water.measurement = Sensor Value"
+             ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         }
+       }
+    }
+  },
+  "type": "object",
+   "allOf": [
+    {"$ref": "#/definitions/zwave.operation.multilevelsensorcommandclasswaterflow"}
+  ],
+  "required": ["Sensor Type", "Precision", "Scale", "Size", "Sensor Value"]
+}

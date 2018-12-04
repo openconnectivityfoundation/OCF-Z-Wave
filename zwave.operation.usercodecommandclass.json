@@ -1,0 +1,59 @@
+{
+  "id": "http://openinterconnect.org/zwavemapping/schemas/zwave.operation.usercodecommandclass.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "User Code Command Class",
+  "definitions": {
+    "zwave.operation.usercodecommandclass": {
+      "type": "object",
+      "properties": {
+        "User Identifier": {
+          "type" :  "Number",
+          "description": "specify the actual User Identifier",
+          "x-ocf-conversion": {
+             "x-ocf-alias": "oic.r.lock.code",
+             "x-to-ocf": [
+               "Used as an index in the lock code array. It is defined in ZWave as 0..255 (8 bit field)."
+             ],
+            "x-from-ocf": [
+               "useridentifier = oic.r.lock.code.lockCodeList[arrayIndex]"
+			]
+           }
+         },
+         "User ID Status": {
+           "type" :  "Integer",
+           "description": "indicates the status of the User Identifier",
+           "x-ocf-conversion": {
+             "x-ocf-alias": "oic.r.lock.code",
+             "x-to-ocf": [
+               "N/A "
+             ],
+            "x-from-ocf": [
+               "User ID Status = 0x01"
+			]
+           }
+         },
+         "lockCodeList": {
+           "type" :  "array",
+           "description": "advertise the User Code to be set for the User Identifier",
+           "x-ocf-conversion": {
+             "x-ocf-alias": "oic.r.lock.code",
+             "x-to-ocf": [
+               "User Identifier = ZWave Command Class User Identifier",
+               "oic.r.lock.code.lockCodeList[User Identifier] = User Code"
+             ],
+            "x-from-ocf": [
+               "User Identifier = locally persisted ZWave Command Class User Identifier associated with this Resource",
+               "User Code = oic.r.lock.code.lockCodeList[User Identifier]"
+			]
+           }
+         }
+       }
+     }
+  },
+  "type": "object",
+   "allOf": [
+    {"$ref": "#/definitions/zwave.operation.doorlockoperationcommandclass"}
+  ],
+  "required": ["User Identifier", "User ID Status", "User Code"]
+}

@@ -1,0 +1,138 @@
+{
+  "id": "http://openinterconnect.org/zwavemapping/schemas/zwave.operation.notificationcommandclass.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "Notification Command Class",
+  "definitions": {
+    "zwave.operation.notificationcommandclass": {
+      "type": "object",
+      "properties": {
+        "V1 Alarm Type": {
+          "type" :  "Integer",
+          "description": "depends on the V1 Alarm field advertised in the Alarm Type Supported Report Command",
+          "x-ocf-conversion": {
+           "x-ocf-alias": "oic.r.sensor.carbondioxide, oic.r.sensor.carbonmonoxide, oic.r.sensor.smoke, oic.r.sensor.water",
+           "x-to-ocf": [
+             "N/A"
+           ],
+            "x-from-ocf": [
+			 "N/A"
+			]
+          }
+        },
+        "V1 Alarm Level": {
+          "type" :  "Integer",
+          "description": "product manual specific",
+          "x-ocf-conversion": {
+           "x-ocf-alias": "oic.r.sensor.carbondioxide, oic.r.sensor.carbonmonoxide, oic.r.sensor.smoke, oic.r.sensor.water",
+            "x-to-ocf": [
+               "N/A"
+            ],
+            "x-from-ocf": [
+			   "N/A"
+			]
+          }
+        },
+        "Notification Status": {
+           "type" :  "Integer",
+           "description": "advertise the status of the Notification Type",
+           "x-ocf-conversion": {
+           "x-ocf-alias": "oic.r.sensor.carbondioxide, oic.r.sensor.carbonmonoxide, oic.r.sensor.smoke, oic.r.sensor.water",
+             "x-to-ocf": [
+               "Value = Notification Status"
+             ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         },
+         "Notification Type": {
+           "type" :  "Integer",
+           "description": " specify a Notification Type ",
+           "x-ocf-conversion": {
+           "x-ocf-alias": "oic.r.sensor.carbondioxide, oic.r.sensor.carbonmonoxide, oic.r.sensor.smoke, oic.r.sensor.water",
+             "x-to-ocf": [
+               "if Notification Type = Smoke Alarm, ocf.rt = oic.r.sensor.smoke.",
+               "if Notification Type = CO Alarm, ocf.rt = oic.r.sensor.carbonmonoxide.",
+               "if Notification Type = CO2 Alarm, ocf.rt = oic.r.sensor.carbondioxide.",
+               "if Notification Type = Water Alarm, ocf.rt = oic.r.sensor.water."
+             ],
+             "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         },
+         "Notification Event:State": {
+           "type" :  "Integer",
+           "description": "specify a Notification Event/State for the advertised Notification Type",
+           "x-ocf-conversion": {
+           "x-ocf-alias": "oic.r.sensor.carbondioxide, oic.r.sensor.carbonmonoxide, oic.r.sensor.smoke, oic.r.sensor.water",
+             "x-to-ocf": [
+               "Value = Notification Event:State"
+             ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         },
+         "Sequence": {
+           "type" :  "boolean",
+           "description": "advertise the presence of the Sequence Number field",
+           "x-ocf-conversion": {
+           "x-ocf-alias": "oic.r.sensor.carbondioxide, oic.r.sensor.carbonmonoxide, oic.r.sensor.smoke, oic.r.sensor.water",
+             "x-to-ocf": [
+               "ocf.sequence = Sequence"
+             ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         },
+         "Event:State Parameters Length": {
+           "type" :  "number",
+           "description": "advertise the length in bytes of the Event / State Parameters field",
+           "x-ocf-conversion": {
+           "x-ocf-alias": "oic.r.sensor.carbondioxide, oic.r.sensor.carbonmonoxide, oic.r.sensor.smoke, oic.r.sensor.water",
+             "x-to-ocf": [
+               "ocf.event:stateparameterslength = Event:State Parameters Length"
+             ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         },
+         "Event:State Parameter": {
+           "type" :  "Integer",
+           "description": "specify associated parameters to a Notification",
+           "x-ocf-conversion": {
+           "x-ocf-alias": "oic.r.sensor.carbondioxide, oic.r.sensor.carbonmonoxide, oic.r.sensor.smoke, oic.r.sensor.water",
+             "x-to-ocf": [
+               "ocf.event:stateparameter = Event:State Parameter"
+             ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         },
+         "Sequence Number": {
+           "type" :  "number",
+           "description": "advertise a sequence number for the actual Notification",
+           "x-ocf-conversion": {
+           "x-ocf-alias": "oic.r.sensor.carbondioxide, oic.r.sensor.carbonmonoxide, oic.r.sensor.smoke, oic.r.sensor.water",
+             "x-to-ocf": [
+               "ocf.sequencenumber = Sequence Number"
+             ],
+            "x-from-ocf": [
+			    "N/A"
+			]
+           }
+         }
+       }
+     }
+   },
+   "type": "object",
+    "allOf": [
+     {"$ref": "#/definitions/zwave.operation.notificationcommandclass"}
+   ],
+   "required": ["V1 Alarm Type", "V1 Alarm Level", "Notification Status", "Notification Type", "Notification Event:State", "Sequence", "Event:State Parameters Length"]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "http://openinterconnect.org/zwavemapping/schemas/zwave.operation.doorlockcommandclass.json#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description" : "Copyright (c) 2018 Open Connectivity Foundation, Inc. All rights reserved.",
+  "title": "Door Lock Command Class",
+  "definitions": {
+    "zwave.operation.doorlockcommandclass": {
+      "type": "object",
+      "properties": {
+        "Door Lock Mode": {
+          "type" :  "integer",
+          "description": "operation mode of the door lock device",
+          "x-ocf-conversion": {
+            "x-ocf-alias": "oic.r.lock.status",
+            "x-to-ocf": [
+              "if Door Lock Mode = 0x00, ocf.r.lock.status.lockState = UnLocked",
+              "if Door Lock Mode = 0xFF, ocf.r.lock.status.lockState = Locked"
+            ],
+            "x-from-ocf": [
+              "if ocf.r.lock.status.lockState = Unlocked, Door Lock Mode = 0x00",
+              "if ocf.r.lock.status.lockState = Locked, Door Lock Mode = 0xFF"
+			]
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+   "allOf": [
+    {"$ref": "#/definitions/zwave.operation.doorlockcommandclass"}
+  ],
+  "required": ["Door Lock Mode"]
+}
